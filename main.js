@@ -6,6 +6,6 @@
 
 
 // 匯入元件
-import './newImage.js';
+import './modules/newImage.js';
 
 
