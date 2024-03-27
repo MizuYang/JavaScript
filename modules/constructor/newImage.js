@@ -28,8 +28,8 @@ function newImage() {
   
   // 圖片加載完畢
   img.onload = () => {
-    console.log('width: ', img.width)
-    console.log('height: ', img.height)
+    // console.log('width: ', img.width)
+    // console.log('height: ', img.height)
     const el = document.querySelector('#newImage1')
     el.innerHTML = `
     <hr />
