@@ -3,8 +3,8 @@
 newAudio()
 
 function newAudio () {
-  const audio = new Audio()
-  audio.src = '../assets/other/audio/mp3.mp3'
+  const audio = new Audio('../assets/other/audio/mp3.mp3')
+  // audio.src = '../assets/other/audio/mp3.mp3'
 
   audio.addEventListener('loadedmetadata', () => {
     console.log('音樂已載入完畢', audio)
