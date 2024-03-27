@@ -6,7 +6,9 @@
 
 
 // 匯入元件
-import './modules/newImage.js';
-import './modules/newAudio.js';
+
+// 建構函式 function constructor
+import './modules/constructor/newImage.js';
+import './modules/constructor/newAudio.js';
 
 
