@@ -13,5 +13,6 @@ import './modules/constructor/newAudio.js';
 import './modules/constructor/newArray.js';
 import './modules/constructor/newObject.js';
 import './modules/constructor/newUrl.js';
+import './modules/constructor/newMap.js';
 
 
