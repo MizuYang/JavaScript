@@ -18,5 +18,6 @@ import './modules/constructor/newFormData.js';
 import './modules/constructor/newXMLHttpRequest.js';
 import './modules/constructor/newFileReader.js';
 import './modules/constructor/newPromise.js';
+import './modules/other/sessionStorage.js'
 
 
