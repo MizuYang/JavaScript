@@ -21,4 +21,4 @@ import './modules/constructor/newPromise.js';
 import './modules/other/sessionStorage.js'
 import './modules/other/cookie.js'
 import './modules/bom/window.js'
-
+import './modules/bom/screen.js'
