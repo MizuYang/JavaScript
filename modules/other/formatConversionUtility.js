@@ -14,7 +14,7 @@ async function formatConversionUtility() {
 	img.width = 200
 	img.height = 200
 
-	app.appendChild(div)
+	// app.appendChild(div)
 
 	
 	// 1. url to base64 - 1  (網址轉 Base64)
@@ -52,7 +52,7 @@ async function formatConversionUtility() {
 	// console.log('newUrl2: ', newUrl2) // blob:http://localhost:5173/a8ed66af-d1e7-4fae-b418-654cf3ca9507
 	// img.src = newUrl2
 
-	div.appendChild(img)
+	// div.appendChild(img)
 
 
 }

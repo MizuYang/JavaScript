@@ -19,6 +19,7 @@ import './modules/constructor/newXMLHttpRequest.js';
 import './modules/constructor/newFileReader.js';
 import './modules/constructor/newPromise.js';
 import './modules/constructor/newMap.js';
+import './modules/constructor/newWork.js';
 import './modules/other/sessionStorage.js'
 import './modules/other/cookie.js'
 import './modules/other/formatConversionUtility.js'
@@ -26,4 +27,5 @@ import './modules/bom/window.js'
 import './modules/bom/screen.js'
 import './modules/bom/location.js'
 import './modules/bom/history.js'
+
 
