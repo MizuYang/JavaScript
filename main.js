@@ -18,8 +18,8 @@ import './modules/constructor/newFormData.js';
 import './modules/constructor/newXMLHttpRequest.js';
 import './modules/constructor/newFileReader.js';
 import './modules/constructor/newPromise.js';
+import './modules/constructor/newMap.js';
 import './modules/other/sessionStorage.js'
 import './modules/other/cookie.js'
-import './modules/constructor/newMap.js';
-
+import './modules/other/formatConversionUtility.js'
 
