@@ -49,3 +49,22 @@ console.log(babaCat)
 // babaCat.使用翻滾() // 八八貓 翻滾!!!
 // babaCat.使用翻跟斗() // 八八貓 翻跟斗!!!
 // babaCat.移動() // 12歲的八八貓 正在移動
+
+
+
+// ======== static 靜態方法 ======== 
+class StaticTest {
+  constructor () {}
+  static test () {
+    console.log('測試 static 文字')
+  }
+}
+
+// 被定義為 Static Method 可以直接以 Constructor 呼叫
+StaticTest.test() // 測試文字
+
+// 但創建出來的 Instance 是無法使用它的
+const static實體 = new StaticTest()
+// static實體.test() // 錯誤: Uncaught TypeError: static實體.test is not a function
+
+// ======== static 靜態方法 ======== 
