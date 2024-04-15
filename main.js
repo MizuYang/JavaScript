@@ -21,6 +21,7 @@ import './modules/constructor/newPromise.js';
 import './modules/constructor/newMap.js';
 import './modules/constructor/newWork.js';
 import './modules/constructor/createInstance.js'
+import './modules/constructor/classes.js'
 import './modules/other/sessionStorage.js'
 import './modules/other/cookie.js'
 import './modules/other/formatConversionUtility.js'
