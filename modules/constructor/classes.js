@@ -7,7 +7,7 @@
 class Animal {
   constructor () {
     this.type = '動物'
-    console.log('this', this) // Cat {type: '動物'}
+    // console.log('this', this) // Cat {type: '動物'}
   }
 }
 Animal.prototype.移動 = function () {
@@ -44,7 +44,7 @@ class Cat extends Animal {
 // }
 
 const babaCat = new Cat('八八貓', 12)
-console.log(babaCat)
+// console.log(babaCat)
 // babaCat.使用喵喵叫() // 我是八八貓, 喵喵~
 // babaCat.使用翻滾() // 八八貓 翻滾!!!
 // babaCat.使用翻跟斗() // 八八貓 翻跟斗!!!
@@ -61,10 +61,36 @@ class StaticTest {
 }
 
 // 被定義為 Static Method 可以直接以 Constructor 呼叫
-StaticTest.test() // 測試文字
+// StaticTest.test() // 測試文字
 
 // 但創建出來的 Instance 是無法使用它的
 const static實體 = new StaticTest()
 // static實體.test() // 錯誤: Uncaught TypeError: static實體.test is not a function
 
 // ======== static 靜態方法 ======== 
+
+
+// ======== getter, setter ======== 
+class GetterSetter {
+  constructor (name) {
+    this.name = name
+  }
+  get age () {
+    return this._age ? 
+      `${this.name}的年齡是${this._age}歲`: 
+      `我不知道 ${this.name} 的年齡`
+  }
+  set age (value) {
+    this._age = value
+  }
+}
+const getterSetter = new GetterSetter('Mizu')
+// console.log(getterSetter.age) // 我不知道 Mizu 的年齡
+getterSetter.age = 18
+// console.log(getterSetter.age) // Mizu的年齡是18歲
+// console.log(getterSetter._age) // 18 <- 可以讀取到 _age 的值
+// console.log('getterSetter', getterSetter)
+
+// ======== getter, setter ======== 
+
+
