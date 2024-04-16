@@ -235,3 +235,23 @@ Object.freeze(obj4.b)
 // console.log(obj4.b)
 
 // ============== freeze 凍結 ==============
+
+
+
+// ============== 解除 preventExtensions, seal, freeze 的方法 ==============
+const obj5 = { a: 1, b: 2 }
+Object.freeze(obj5)
+
+// obj5.c = 123 // 新增失敗
+// obj5.a = 123 // 編輯失敗
+// delete obj5.a // 刪除失敗
+
+// 使用深層拷貝解除凍結
+const newObj5 = JSON.parse(JSON.stringify(obj5))
+// newObj5.c = 123 // 新增成功
+// newObj5.a = 123 // 編輯成功
+// delete newObj5.a // 刪除成功
+
+// console.log(newObj5)
+
+// ============== 解除 preventExtensions, seal, freeze 的方法 ==============
