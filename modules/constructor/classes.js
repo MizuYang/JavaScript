@@ -94,3 +94,26 @@ getterSetter.age = 18
 // ======== getter, setter ======== 
 
 
+
+// ======== # 私有屬性 ======== 
+class 私有屬性 {
+  #name = ''
+  constructor (name) {
+    this.#name = name
+  }
+  get name () {
+    return this.#name
+  }
+  set name(value) {
+    this.#name = value
+  }
+}
+
+const 測試私有屬性 = new 私有屬性('Mizu')
+// console.log(測試私有屬性.name) // Mizu
+// console.log(測試私有屬性.#name) // 讀取不出來 (報錯)
+測試私有屬性.name = 'Jack'
+// console.log(測試私有屬性.name) // Jack
+
+// ======== # 私有屬性 ======== 
+
