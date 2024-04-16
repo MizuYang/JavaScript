@@ -209,3 +209,29 @@ Object.preventExtensions(obj3.b)
 // console.log(obj3)
 
 // ============== seal 封裝 ==============
+
+
+
+// ============== freeze 凍結 ==============
+const obj4 = { a: 1, b: { bb: 123}, c: 3}
+
+// freeze 凍結: 新增(X)、刪除(X)、修改(X)
+Object.freeze(obj4)
+
+// obj4.d = 1 // 報錯 禁止新增
+// obj4.a = 123 // 報錯 禁止修改
+// delete obj4.a // 報錯 禁止刪除
+
+// 凍結後物件底下的屬性, 仍可在該屬性中新增、刪除
+// obj4.b.cc = 123 // 新增成功
+// obj4.b.bb = 456 // 編輯成功
+// delete obj4.b.bb  // 刪除成功
+
+Object.freeze(obj4.b)
+// obj4.b.cc = 123 // 新增失敗
+// obj4.b.bb = 456 // 編輯失敗
+// delete obj4.b.bb  // 刪除失敗
+
+// console.log(obj4.b)
+
+// ============== freeze 凍結 ==============
