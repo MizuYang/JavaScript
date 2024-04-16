@@ -167,3 +167,21 @@ obj.age = 18
 // console.log('getAge: ', obj.getAge()) // 18
 
 // ============== 物件的 getter, setter ==============
+
+
+
+// ============== preventExtensions 防止擴展 ==============
+const obj2 = { a: 1, b: {}, c: 3}
+
+// preventExtensions 防止擴展: 新增(X)、刪除(O)、修改(O)
+Object.preventExtensions(obj2)
+
+// obj2.d = 4 // 報錯 禁止新增
+obj2.c = 33 // 修改成功
+delete obj2.a // 刪除成功
+console.log(obj2)
+
+Object.preventExtensions(obj2.b)
+// obj2.b.name = 'Mizu' // 報錯 禁止新增
+
+// ============== preventExtensions 防止擴展 ==============
