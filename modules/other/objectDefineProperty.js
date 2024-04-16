@@ -125,3 +125,25 @@ todo.todoName = '汽車保養'
 
 // console.log(todo.todoData) // undefined 外部無法讀取
 // console.log(todo.getTodoList()) // [{…}, {…}, {…}]
+
+
+// ============== 屬性特徵的限制 ==============
+const person4 = {
+  a: {}
+}
+// Object.defineProperty 只能設定該屬性的特徵，無法設定物件內部的屬性特徵
+Object.defineProperty(person4, 'a', {
+  writable: false
+})
+
+// 屬性特徵的限制只能限制該屬性的特徵，無法限制物件內部的屬性特徵
+person4.a.name = 'Mizu'
+
+// writable: false 無法修改該屬性
+// person4.a = 'Jack' // 報錯
+
+// 雖 writable: false 無法修改該屬性,但仍可在該屬性中編輯屬性
+console.log(person4.a)  // {name: 'Mizu'}
+
+
+// ============== 屬性特徵的限制 ==============
