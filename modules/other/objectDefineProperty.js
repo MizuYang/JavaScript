@@ -81,7 +81,7 @@ Object.defineProperties(person2, {
 })
 
 
-// getter, setter
+// getter, setter - 基本用法
 const person3 = {
   name: 'Mizu',
   age: 18
@@ -98,3 +98,30 @@ Object.defineProperty(person3, 'name', {
 person3.name = 'Jack'
 // console.log(person3.name) // Hi~ 我是 jack
 
+
+// getter, setter - 小練習
+function todoList () {
+  this._todoName = ''
+  const todoData = []
+  Object.defineProperty(this, 'todoName', {
+    get () {
+      return this._todoName;
+    },
+    set (value) {
+      this._todoName = value;
+      todoData.push({ val: this._todoName });
+    },
+  })
+  this.getTodoList = function () {
+    return todoData
+  }
+}
+
+const todo = new todoList()
+todo.todoName = '買菜'
+todo.todoName = '去 ATM 領錢'
+todo.todoName = '汽車保養'
+// console.log(todo)
+
+// console.log(todo.todoData) // undefined 外部無法讀取
+// console.log(todo.getTodoList()) // [{…}, {…}, {…}]
