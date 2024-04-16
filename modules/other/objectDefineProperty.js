@@ -79,3 +79,22 @@ Object.defineProperties(person2, {
     configurable: true // 可否刪除
   }
 })
+
+
+// getter, setter
+const person3 = {
+  name: 'Mizu',
+  age: 18
+}
+Object.defineProperty(person3, 'name', {
+  get () {
+    return this._name
+  },
+  set (value) {
+    // console.log('value', value) // Jack
+    this._name = `Hi~ 我是 ${value.toLowerCase()}`
+  }
+})
+person3.name = 'Jack'
+// console.log(person3.name) // Hi~ 我是 jack
+
