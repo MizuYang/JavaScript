@@ -117,3 +117,27 @@ const 測試私有屬性 = new 私有屬性('Mizu')
 
 // ======== # 私有屬性 ======== 
 
+
+
+// ======== # 公開屬性 ======== 
+class 公開屬性 {
+  name = ''
+
+  constructor (name) {
+    this.name = name
+  }
+
+  get name () {
+    return this.name
+  }
+  set name (value) {
+    this.name = value
+  }
+}
+
+const 測試公開屬性 = new 公開屬性('Mizu')
+// console.log(測試公開屬性.name) // Mizu
+測試公開屬性.name = 'Jack'
+// console.log(測試公開屬性.name) // Jack
+
+// ======== # 公開屬性 ======== 
