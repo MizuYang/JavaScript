@@ -13,10 +13,10 @@ const person = {
 }
 // 1. 基本架構
 // Object.defineProperty(person, 'name', {
-//   value: '', // 值
-//   writable: true, // 可否修改
-//   enumerable: true, // 可否列舉
-//   configurable: true // 可否刪除
+  // value: '', // 值
+  // writable: true, // 可否修改
+  // enumerable: true, // 可否列舉
+  // configurable: true // 可否刪除
 // })
 // console.log(person)
 
@@ -59,4 +59,23 @@ Object.defineProperty(person, 'job', {
 })
 // console.log(person.job) // coder
 
-// Object.defineProperties() 
+
+// 7. Object.defineProperties() 一次定義多個屬性特徵
+const person2 = {
+  name: 'Mizu',
+  age: 18
+}
+Object.defineProperties(person2, {
+  name: {
+    value: '', // 值
+    writable: true, // 可否修改
+    enumerable: true, // 可否列舉
+    configurable: true // 可否刪除
+  },
+  age: {
+    value: '', // 值
+    writable: true, // 可否修改
+    enumerable: true, // 可否列舉
+    configurable: true // 可否刪除
+  }
+})
