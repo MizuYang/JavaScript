@@ -143,7 +143,27 @@ person4.a.name = 'Mizu'
 // person4.a = 'Jack' // 報錯
 
 // 雖 writable: false 無法修改該屬性,但仍可在該屬性中編輯屬性
-console.log(person4.a)  // {name: 'Mizu'}
+// console.log(person4.a)  // {name: 'Mizu'}
 
 
 // ============== 屬性特徵的限制 ==============
+
+
+
+// ============== 物件的 getter, setter ==============
+const obj = {
+  get age () {
+    return this._age
+  },
+  set age (value) {
+    this._age = value
+  },
+  getAge () {
+    return this._age
+  }
+}
+obj.age = 18
+// console.log(obj) // {_age: 18, getAge: ƒ}
+// console.log('getAge: ', obj.getAge()) // 18
+
+// ============== 物件的 getter, setter ==============
