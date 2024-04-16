@@ -18,8 +18,15 @@ import './modules/constructor/newFormData.js';
 import './modules/constructor/newXMLHttpRequest.js';
 import './modules/constructor/newFileReader.js';
 import './modules/constructor/newPromise.js';
+import './modules/constructor/newMap.js';
+import './modules/constructor/newWork.js';
+import './modules/constructor/createInstance.js'
+import './modules/constructor/classes.js'
 import './modules/other/sessionStorage.js'
 import './modules/other/cookie.js'
+import './modules/other/proxy.js'
+import './modules/other/formatConversionUtility.js'
+import './modules/other/objectDefineProperty.js'
 import './modules/bom/window.js'
 import './modules/bom/screen.js'
 import './modules/bom/location.js'
