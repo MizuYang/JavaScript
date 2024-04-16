@@ -177,11 +177,35 @@ const obj2 = { a: 1, b: {}, c: 3}
 Object.preventExtensions(obj2)
 
 // obj2.d = 4 // 報錯 禁止新增
-obj2.c = 33 // 修改成功
-delete obj2.a // 刪除成功
-console.log(obj2)
+
+// 防止擴展後物件底下的屬性, 仍可在該屬性中新增
+// obj2.b.name = 'Mizu' // 新增成功
 
 Object.preventExtensions(obj2.b)
 // obj2.b.name = 'Mizu' // 報錯 禁止新增
 
+// console.log(obj2)
 // ============== preventExtensions 防止擴展 ==============
+
+
+
+// ============== seal 封裝 ==============
+const obj3 = { a: 1, b: { bb: 123}, c: 3}
+
+// seal 封裝: 新增(X)、刪除(X)、修改(O)
+Object.seal(obj3)
+
+// obj3.d = 4 // 報錯 禁止新增
+// delete obj3.b // 報錯 刪除失敗
+
+// 封裝後物件底下的屬性, 仍可在該屬性中新增、刪除
+// obj3.b.age = 4 // 新增成功
+// delete obj3.b.bb // 刪除成功
+
+Object.preventExtensions(obj3.b)
+// obj3.b.age = 4 // 新增失敗
+// delete obj3.b.bb // 刪除失敗
+
+// console.log(obj3)
+
+// ============== seal 封裝 ==============
