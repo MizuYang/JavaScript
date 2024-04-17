@@ -27,8 +27,13 @@ import './modules/other/cookie.js'
 import './modules/other/proxy.js'
 import './modules/other/formatConversionUtility.js'
 import './modules/other/objectDefineProperty.js'
+import './modules/other/closure.js'
+import './modules/other/debounce.js'
 import './modules/bom/window.js'
 import './modules/bom/screen.js'
 import './modules/bom/location.js'
 import './modules/bom/history.js'
 import './modules/bom/navigator.js'
+import './modules/vue/proxy.js'
+
+
