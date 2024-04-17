@@ -40,14 +40,50 @@ Object.defineProperty(proxy, 'age', {
   }
 })
 
-proxy.name = 'Jack' // 將 name 屬性修改為 Jack, 我要去更新畫面
+// proxy.name = 'Jack' // 將 name 屬性修改為 Jack, 我要去更新畫面
+// proxy.num = 14         // 偵測不到新增屬性
+// delete proxy.age       // 偵測不到刪除屬性
 
-// 刪除後, 代理物件的 name 屬性會消失, 但 get, set 讀取不到屬性被刪除
-delete proxy.name 
+// console.log('person: ', person) // {name: 'Mizu'}
 
-console.log('person: ', person) // {name: 'Mizu'}
-
-console.log('proxy: ', proxy) // name: "Mizu", get name: ƒ (), set name: ƒ (value)
+// console.log('proxy: ', proxy) // name: "Mizu", get name: ƒ (), set name: ƒ (value)
 
 
 // ============= Vue2 Object.defineProperty =============
+
+// ============= 優化 Vue2 Object.defineProperty =============
+const proxy2 = {}
+const person2 = {
+  name: 'Mizu',
+  age: 18
+}
+
+getProxy()
+
+// console.log('proxy2:', proxy2)
+// console.log('person2:', person2)
+
+// proxy2.name = 'Tina' // 將 name 屬性修改為 Tina, 我要去更新畫面
+// proxy2.age = 14      // 將 age 屬性修改為 14, 我要去更新畫面
+// proxy2.num = 14   // 偵測不到新增屬性
+// delete proxy2.age   // 偵測不到刪除屬性
+
+
+// 寫迴圈把資料賦予到代理物件
+function getProxy () {
+  Object.keys(person2).forEach(keyName => {
+    Object.defineProperty(proxy2, keyName, {
+      configurable: true,
+
+      get () {
+        return person2[keyName]
+      },
+      set (value) {
+        console.log(`將 ${keyName} 屬性修改為 ${value}, 我要去更新畫面`)
+        person2[keyName] = value
+      }
+    })
+  })
+}
+
+// ============= 優化 Vue2 Object.defineProperty =============
