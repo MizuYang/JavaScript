@@ -3,6 +3,7 @@
 // Vue2, Vue3 響應式原理 Object.defineProperty、Proxy
 
 
+// #region Vue2 Object.defineProperty
 // ============= Vue2 Object.defineProperty =============
 
 const proxy = {} // 代理物件
@@ -51,7 +52,7 @@ Object.defineProperty(proxy, 'age', {
 
 // ============= Vue2 Object.defineProperty =============
 
-// ============= 優化 Vue2 Object.defineProperty =============
+// ============= 優化上方程式，寫迴圈把資料賦予到代理物件 =============
 const proxy2 = {}
 const person2 = {
   name: 'Mizu',
@@ -86,4 +87,82 @@ function getProxy () {
   })
 }
 
-// ============= 優化 Vue2 Object.defineProperty =============
+// ============= 優化上方程式，寫迴圈把資料賦予到代理物件 =============
+// #endregion
+
+
+
+// #region Vue3 Proxy
+// ============= Vue3 Proxy =============
+// 1. 測試物件 reactive({})
+const obj = reactive({
+  name: 'Vue3',
+  age: 18
+})
+// console.log(obj) // Proxy(Object) {name: 'Vue3', age: 18}
+
+// 新增屬性
+// obj.yy = 'dcard' // 新增 yy: dcard, 處理更新畫面
+// 修改屬性
+// obj.name = 'mizu' // 修改 name: mizu, 處理更新畫面
+// 刪除屬性
+// delete obj.age // 刪除 age 屬性, 處理更新畫面
+
+
+// 2. 測試陣列 reactive([])
+const array = reactive([
+  1, 2, 3
+])
+// console.log(array) // Proxy(Array) {0: 1, 1: 2, 2: 3}
+
+// array[5] = 567 // 新增 5: 567, 處理更新畫面
+// array[0] = 123 // 修改 0: 123, 處理更新畫面
+// delete array[1] // 刪除 1 屬性, 處理更新畫面
+// array.push(999) // 新增 6: 999, 處理更新畫面
+// array.splice(1, 1) // 修改 1: 3, 處理更新畫面, 刪除 2 屬性, 處理更新畫面, 修改 length: 2, 處理更新畫面 (執行三次的原因, 註1)
+
+function reactive (ref) {
+  const handler = {
+    // 取得屬性時執行
+    get (obj, key) {
+      console.log(`有人讀取 ${key} 屬性`)
+      return obj[key]
+    },
+    // 新增、修改屬性時執行
+    set (obj, key, value) {
+      if (key in obj) {
+        console.log(`修改 ${key}: ${value}, 處理更新畫面`)
+      } else {
+        console.log(`新增 ${key}: ${value}, 處理更新畫面`)
+      }
+      obj[key] = value
+      return true
+    },
+    // 刪除屬性時執行
+    deleteProperty (obj, key) {
+      console.log(`刪除 ${key} 屬性, 處理更新畫面`)
+      delete obj[key]
+      return true
+    }
+  }
+  const proxy = new Proxy(ref, handler)
+
+  return proxy
+}
+
+
+// #region  註1
+// 註1: array.splice(1, 1) 會觸發三個 console.log 的原因如下：
+
+// 修改索引 1 的元素值：當你使用 splice 方法刪除陣列元素時，它也會同時修改原陣列中的元素值。在這個情況下，陣列中索引 1 的元素值從 2 變成了 3，因此會觸發一次 console.log，顯示為 修改 1: 3, 處理更新畫面。
+
+// 刪除索引 2 的元素：splice 方法同時會刪除指定範圍內的元素。在這個例子中，你刪除了索引 1 的元素，因此索引 2 的元素也被移動到了索引 1 的位置，這導致了一次刪除操作。所以會觸發第二次 console.log，顯示為 刪除 2 屬性, 處理更新畫面。
+
+// 修改陣列的長度：當你使用 splice 方法修改了陣列的長度時，JavaScript 會自動更新陣列的長度。在這個例子中，刪除了一個元素後，陣列的長度從 3 變成了 2。這個操作也會觸發一次 console.log，顯示為 修改 length: 2, 處理更新畫面。
+
+// 因此，array.splice(1, 1) 會觸發三個 console.log 是因為一次 splice 操作導致了三個不同的更新動作。
+// #endregion
+
+
+// ============= Vue3 Proxy =============
+// #endregion
