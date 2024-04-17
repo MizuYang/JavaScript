@@ -31,6 +31,6 @@ import './modules/bom/window.js'
 import './modules/bom/screen.js'
 import './modules/bom/location.js'
 import './modules/bom/history.js'
-
+import './modules/vue/proxy.js'
 
 
