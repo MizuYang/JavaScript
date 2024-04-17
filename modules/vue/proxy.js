@@ -95,10 +95,10 @@ function getProxy () {
 // #region Vue3 Proxy
 // ============= Vue3 Proxy =============
 // 1. 測試物件 reactive({})
-const obj = reactive({
-  name: 'Vue3',
-  age: 18
-})
+// const obj = reactive({
+//   name: 'Vue3',
+//   age: 18
+// })
 // console.log(obj) // Proxy(Object) {name: 'Vue3', age: 18}
 
 // 新增屬性
@@ -110,9 +110,9 @@ const obj = reactive({
 
 
 // 2. 測試陣列 reactive([])
-const array = reactive([
-  1, 2, 3
-])
+// const array = reactive([
+//   1, 2, 3
+// ])
 // console.log(array) // Proxy(Array) {0: 1, 1: 2, 2: 3}
 
 // array[5] = 567 // 新增 5: 567, 處理更新畫面
@@ -121,7 +121,56 @@ const array = reactive([
 // array.push(999) // 新增 6: 999, 處理更新畫面
 // array.splice(1, 1) // 修改 1: 3, 處理更新畫面, 刪除 2 屬性, 處理更新畫面, 修改 length: 2, 處理更新畫面 (執行三次的原因, 註1)
 
-function reactive (ref) {
+// 3. 測試深層物件 reactive({}) 是否能觸發響應式
+const a = reactive({
+  b: {
+    c: {
+      text: 'xxx'
+    },
+    d: [
+      {
+        e: {
+          f: {
+            text: 456
+          },
+          g: [1, 2, 3]
+        }
+      }
+    ]
+  },
+  c: [
+    {
+      text: 'x1'
+    },
+    [4, 5, 6]
+  ],
+  h () {},
+  i: 'iiiii QQ'
+})
+
+// 新增
+// a.aa = { prop: '嘿嘿 prop XD' } // aa: Proxy(Object) {prop: '嘿嘿 prop XD'}
+// a.aa.prop = '偷偷改看看!!' // 修改 prop: 偷偷改看看!!, 處理更新畫面
+// a.ccc = ['你好', '我是', '米知'] // ccc: Proxy(Array) {0: '你好', 1: '我是', 2: '米知'}
+// a.ccc[1] = '我不是' // 修改 1: 我不是, 處理更新畫面
+
+// 修改
+// a.b.c.text = '有更新' // 修改 text: 有更新, 處理更新畫面
+// a.b.d[0].e.f.text = '更新啊 太多層了吧 QQ' // 修改 text: 更新啊 太多層了吧 QQ, 處理更新畫面
+// a.b.d[0].e.g[2] = '陣列改改改!!!' // 修改 2: 陣列改改改!!!, 處理更新畫面
+
+// 刪除
+// delete a.b.d[0].e.f.text // 刪除 text 屬性, 處理更新畫面
+
+function reactive (data) {
+  // 處理物件中的深層屬性 都要是響應式
+  Object.keys(data).forEach(keyName => {
+    if (typeof data[keyName] === 'object' && typeof data[keyName] !== null) {
+      data[keyName] = reactive(data[keyName])
+    }
+  })
+
+
   const handler = {
     // 取得屬性時執行
     get (obj, key) {
@@ -136,6 +185,11 @@ function reactive (ref) {
         console.log(`新增 ${key}: ${value}, 處理更新畫面`)
       }
       obj[key] = value
+
+      // 檢查新增、編輯的值是否為物件，是的話要處理成 Proxy 物件
+      if (typeof value === 'object' && typeof value !== null) {
+        obj[key] = reactive(value)
+      }
       return true
     },
     // 刪除屬性時執行
@@ -145,7 +199,7 @@ function reactive (ref) {
       return true
     }
   }
-  const proxy = new Proxy(ref, handler)
+  const proxy = new Proxy(data, handler)
 
   return proxy
 }
