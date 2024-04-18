@@ -36,12 +36,27 @@
 // #endregion
 
 
+// #region 高階函式 => filter
+// const data = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
+// Array.prototype.myFilter = function (callback) {
+//   const array = []
 
+//   for(let i = 0; i < this.length; i++) {
+//     const result = callback(this[i], i, this)
+//     // console.log(result) // 會回傳該 item 是否符合條件(true, false)
 
+//     if (result) array.push(this[i])
+//   }
+//   return array
+// }
 
+// const newData = data.myFilter((item) => {
+//   return item > 5
+// })
+// console.log(newData) // [6, 7, 8, 9]
 
-
+// #endregion
 
 
 
