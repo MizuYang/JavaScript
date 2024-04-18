@@ -43,3 +43,4 @@ import './modules/vue/proxy.js'
 // 重複練習
 import './modules/tryAgain/debounce.js'
 import './modules/tryAgain/throttle.js'
+import './modules/tryAgain/higherOrderFunction.js'
