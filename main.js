@@ -38,3 +38,6 @@ import './modules/bom/navigator.js'
 import './modules/vue/proxy.js'
 
 
+// 重複練習
+// debounce 防抖
+import './modules/tryAgain/debounce.js'
