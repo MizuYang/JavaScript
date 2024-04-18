@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang='zh-TW'>
+
+<head>
+<meta charset='UTF-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+<meta name='viewport' content='width=device-width,initial-scale=1.0'>
+<meta name='description' content='輸入網站描述---------------- /'>
+<meta name='keywords' content='輸入網站關鍵字/---------------- /'>
+
+<title>偶速子分頁</title>
+</head>
+
+<body>
+  <h4>
+    我是子頁面, <br />
+    父頁面是: <code>modules\other\window.js</code>
+  </h4>
+
+  <!-- 分頁名稱 -->
+  <h5>
+    分頁名稱: 
+    <span id="childPageTitle"></span>
+  </h5>
+
+  <button type="button" id="childPageBtn">
+    傳訊息給父層
+  </button>
+
+  <script>
+    const btn = document.getElementById('childPageBtn')
+    const span = document.getElementById('childPageTitle')
+
+    span.textContent = this.name
+    
+    btn.addEventListener('click', () =>{
+      const message = {
+        now: new Date().toLocaleString(),
+        message: '傳遞訊息'
+      }
+      // this.opener.postMessage(message, 'http://localhost:5173/JavaScript/')
+      this.opener.postMessage(message, this.location.origin)
+    })
+
+    this.addEventListener('message', (e) => {
+      console.log(e.data)
+    })
+
+    // 頁面被關閉時, 告知父頁面
+    this.addEventListener('beforeunload', function (event) {
+      // 阻止默認行為，以顯示自定義的提示訊息
+      event.preventDefault()
+
+      const message = {
+        now: new Date().toLocaleString(),
+        message: '頁面已關閉'
+      }
+      this.opener.postMessage(message, 'http://localhost:5173/JavaScript/')
+    })
+  </script>
+</body>
+</html>
